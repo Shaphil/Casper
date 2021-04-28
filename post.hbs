@@ -74,23 +74,29 @@ into the {body} tag of the default.hbs template --}}
         If you want to embed comments, this is a good place to paste your code!
     </section>
     --}}
+    {{!-- TODO: IMPORTANT. Find and replace {YOUR-SITE} from belowwith your disqus shortname
+    You can comment out the entire following section if you don't want discus for commenting --}}
+    <section class="article-comments gh-canvas">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = "{{url absolute="true"}}";
+                this.page.identifier = "ghost-{{comment_id}}"
+            };
+            (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://{YOUR-SITE}.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>
+            Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </section>
 
 </article>
-
-{{!-- A signup call to action is displayed here, unless viewed as a logged-in member --}}
-{{#unless @member}}
-<section class="footer-cta">
-    <div class="inner">
-        <h2>Sign up for more like this.</h2>
-        <a class="footer-cta-button" href="#/portal">
-            <div>Enter your email</div>
-            <span>Subscribe</span>
-        </a>
-        {{!-- ^ This looks like a form element, but it's just a link to Portal,
-        making the form validation and submission much simpler. --}}
-    </div>
-</section>
-{{/unless}}
 
 
 {{!-- Read more links, just above the footer --}}
